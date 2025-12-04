@@ -92,7 +92,7 @@ def main():
 
     print("\n---- Agregar combustible si es necesario ----")
     for v in vehiculos:
-        if v.combustible < 5:
+        if v.combustible < 5: #
             v.agregar_combustible(10)
         else:
             print(f"[{v.placa}] Tiene suficiente combustible: {v.combustible:.2f} L")
