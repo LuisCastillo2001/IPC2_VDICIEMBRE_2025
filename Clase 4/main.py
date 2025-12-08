@@ -97,14 +97,16 @@ def leer_reservaciones_minidom(ruta):
         print(root.tagName)
         if root.tagName == 'reservaciones':
             reservaciones = root.getElementsByTagName('reservacion')
+            print("---------")
+            
             print(f"Total de reservaciones: {len(reservaciones)}")
             for reservacion in reservaciones:
                 id = reservacion.getAttribute('id')
                 descripcion = reservacion.getElementsByTagName('descripcion')[0].firstChild.data
                 dia_elem = reservacion.getElementsByTagName('dia')[0]
                 dia = dia_elem.firstChild.data
-                hora = reservacion.getElementsByTagName('dia')[0].getAttribute('hora')
-                minutos = reservacion.getElementsByTagName('dia')[0].getAttribute('minutos')
+                hora = dia_elem.getAttribute('hora')
+                minutos = dia_elem.getAttribute('minutos')
                 usuarios = []
                 usuarios_elem = reservacion.getElementsByTagName('usuarios')[0]
                 for usuario in usuarios_elem.getElementsByTagName('usuario'):

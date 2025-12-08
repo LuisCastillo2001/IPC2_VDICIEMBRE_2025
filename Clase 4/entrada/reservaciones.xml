@@ -7,6 +7,10 @@
             <usuario id="IPC2-01">
                 <nombre>María López</nombre>
                 <carrera>Ingeniería en Sistemas</carrera>
+                <materias>
+                    <materia>Matemáticas Discretas</materia>
+                    <materia>Estructuras de Datos</materia>
+                </materias>
             </usuario>
             <usuario id="IPC2-05">
                 <nombre>Carlos Hernández</nombre>
