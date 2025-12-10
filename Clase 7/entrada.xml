@@ -1,0 +1,73 @@
+<cloudSync>
+  <configuracion>
+    <centrosDatos>
+      <centro id="DC001" nombre="DataCenter Principal">
+        <ubicacion>
+          <pais>Guatemala</pais>
+          <ciudad>Guatemala City</ciudad>
+        </ubicacion>
+        <capacidad>
+          <cpu>64</cpu>
+          <ram>256</ram>
+          <almacenamiento>500</almacenamiento>
+        </capacidad>
+      </centro>
+
+      <centro id="DC002" nombre="DataCenter Respaldo">
+        <ubicacion>
+          <pais>Guatemala</pais>
+          <ciudad>Antigua Guatemala</ciudad>
+        </ubicacion>
+        <capacidad>
+          <cpu>32</cpu>
+          <ram>128</ram>
+          <almacenamiento>300</almacenamiento>
+        </capacidad>
+      </centro>
+
+      <centro id="DC003" nombre="DataCenter Norte">
+        <ubicacion>
+          <pais>Guatemala</pais>
+          <ciudad>Quetzaltenango</ciudad>
+        </ubicacion>
+        <capacidad>
+          <cpu>48</cpu>
+          <ram>192</ram>
+          <almacenamiento>400</almacenamiento>
+        </capacidad>
+      </centro>
+    </centrosDatos>
+
+    <maquinasVirtuales>
+      <vm id="VM001" centroAsignado="DC001">
+        <sistemaOperativo>Ubuntu 22.04 LTS</sistemaOperativo>
+        <recursos>
+          <cpu>8</cpu>
+          <ram>16</ram>
+          <almacenamiento>100</almacenamiento>
+        </recursos>
+        <ip>192.168.1.10</ip>
+      </vm>
+
+      <vm id="VM002" centroAsignado="DC001">
+        <sistemaOperativo>Windows Server 2022</sistemaOperativo>
+        <recursos>
+          <cpu>4</cpu>
+          <ram>8</ram>
+          <almacenamiento>80</almacenamiento>
+        </recursos>
+        <ip>192.168.1.11</ip>
+      </vm>
+
+      <vm id="VM003" centroAsignado="DC002">
+        <sistemaOperativo>Debian 12</sistemaOperativo>
+        <recursos>
+          <cpu>6</cpu>
+          <ram>12</ram>
+          <almacenamiento>120</almacenamiento>
+        </recursos>
+        <ip>192.168.2.20</ip>
+      </vm>
+    </maquinasVirtuales>
+  </configuracion>
+</cloudSync>
