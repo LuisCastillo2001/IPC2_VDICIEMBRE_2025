@@ -193,3 +193,4 @@ class ListaDobleCentros:
         else:
             print(f"No se pudo generar el PNG. Asegúrate de tener Graphviz instalado.")
             print(f" Ejecuta manualmente: dot -Tpng \"{ruta_dot}\" -o \"{ruta_png}\"")
+            

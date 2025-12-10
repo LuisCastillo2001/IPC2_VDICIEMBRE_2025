@@ -1,0 +1,10 @@
+digraph ListaDobleCentros {
+    rankdir=LR;
+    node [shape=record color="blue"];
+
+    nodo0 [label="DC001|DataCenter Principal|Guatemala City"];
+    nodo1 [label="DC002|DataCenter Respaldo|Antigua Guatemala"];
+
+    nodo0 -> nodo1 [dir=both];
+    
+}
