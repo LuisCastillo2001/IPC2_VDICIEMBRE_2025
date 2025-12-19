@@ -4,6 +4,8 @@ import com.ejemploipc_2.service.UsuarioService;
 import com.ejemploipc_2.service.UsuarioServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+
 
 import java.util.LinkedList;
 
@@ -26,7 +28,7 @@ public class UsuarioController {
     public ResponseEntity<?> obtenerUsuarioPorId(@PathVariable Long id){
         Usuario u = usuarioService.obtenerUsuarioPorId(id);
         if (u == null) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         return ResponseEntity.ok(u);
     }
