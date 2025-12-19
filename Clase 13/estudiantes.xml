@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<estudiantes>
+    <estudiante id="1">
+        <nombre>Luis</nombre>
+        <edad>20</edad>
+        <cursos>
+            <curso codigo="IPC1">Introducción a Programación</curso>
+            <curso codigo="MAT1">Matemática</curso>
+        </cursos>
+    </estudiante>
+
+    <estudiante id="2">
+        <nombre>Ana</nombre>
+        <edad>22</edad>
+        <cursos>
+            <curso codigo="BD1">Bases de Datos</curso>
+        </cursos>
+    </estudiante>
+</estudiantes>

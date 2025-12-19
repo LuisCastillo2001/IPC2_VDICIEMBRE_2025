@@ -1,60 +1,59 @@
 public class Persona {
 
-    // ======================
-    // ATRIBUTOS (encapsulados)
-    // ======================
+    // Atributos encapsulados
+
     private String nombre;
     private int edad;
     private double altura;
     private boolean activo;
+    
 
-    // ======================
-    // CONSTRUCTOR
-    // ======================
-    public Persona(String nombre, int edad, double altura, boolean activo) {
+    // Constructor
+    public Persona(String nombre, int edad, double altura, boolean activo){
         this.nombre = nombre;
         this.edad = edad;
         this.altura = altura;
         this.activo = activo;
     }
 
-    // ======================
-    // GETTERS y SETTERS
-    // ======================
-    public String getNombre() {
+
+    // Getter y setter
+
+    public String getNombre(){
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    public void setNombre(String nombre){
         this.nombre = nombre;
     }
 
-    public int getEdad() {
+    public int getEdad(){
         return edad;
     }
 
-    public void setEdad(int edad) {
-        if (edad >= 0) {
-            this.edad = edad;
-        }
+    public void setEdad(int edad){
+        this.edad = edad;
     }
 
-    public double getAltura() {
+    public double getAltura(){
         return altura;
     }
 
-    public boolean isActivo() {
+    public void setAltura(double altura){
+        this.altura = altura;
+    }
+
+    public boolean isActivo(){
         return activo;
     }
 
-    // ======================
-    // MÉTODOS
-    // ======================
-    public void saludar() {
-        System.out.println("Hola, soy " + nombre);
+
+    public void saludar(){
+        System.out.println("Hola, mi nombre es " + nombre);
     }
 
-    public boolean esMayorDeEdad() {
+    public boolean esMayorDeEdad(){
         return edad >= 18;
     }
+
 }
