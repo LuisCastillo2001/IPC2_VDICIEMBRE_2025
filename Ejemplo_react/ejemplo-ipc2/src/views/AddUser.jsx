@@ -2,11 +2,31 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { crearUsuario } from '../services/userService'
 
+// Opciones fijas para roles y pasatiempos
+const ROLES = ['ADMIN', 'USER', 'INVITADO']
+const PASATIEMPOS = ['Futbol', 'Lectura', 'Música', 'Videojuegos', 'Viajar']
+
 export default function AddUser() {
   const [nombre, setNombre] = useState('')
   const [correo, setCorreo] = useState('')
+  const [roles, setRoles] = useState([])
+  const [pasatiempos, setPasatiempos] = useState([])
   const [error, setError] = useState('')
   const navigate = useNavigate()
+
+  const handleRoleChange = (e) => {
+    const value = e.target.value
+    setRoles(prev =>
+      e.target.checked ? [...prev, value] : prev.filter(r => r !== value)
+    )
+  }
+
+  const handlePasatiempoChange = (e) => {
+    const value = e.target.value
+    setPasatiempos(prev =>
+      e.target.checked ? [...prev, value] : prev.filter(p => p !== value)
+    )
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -19,7 +39,9 @@ export default function AddUser() {
 
     const nuevoUsuario = {
       nombre: nombre,
-      correo: correo
+      correo: correo,
+      roles: roles,
+      pasatiempos: pasatiempos
     }
 
     try {
@@ -56,6 +78,50 @@ export default function AddUser() {
             onChange={(e) => setCorreo(e.target.value)}
             placeholder="jessi@mail.com"
           />
+        </div>
+
+        {/* Checklist de roles */}
+        <div className="form-row">
+          <label>Roles</label>
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+            {ROLES.map((rol) => (
+              <label key={rol} style={{
+                display: 'flex', alignItems: 'center', gap: '0.4em',
+                background: roles.includes(rol) ? '#667eea22' : 'transparent',
+                borderRadius: '8px', padding: '0.2em 0.7em'
+              }}>
+                <input
+                  type="checkbox"
+                  value={rol}
+                  checked={roles.includes(rol)}
+                  onChange={handleRoleChange}
+                />
+                <span style={{ color: '#667eea', fontWeight: 500 }}>{rol}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        {/* Checklist de pasatiempos */}
+        <div className="form-row">
+          <label>Pasatiempos</label>
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+            {PASATIEMPOS.map((p) => (
+              <label key={p} style={{
+                display: 'flex', alignItems: 'center', gap: '0.4em',
+                background: pasatiempos.includes(p) ? '#38a16922' : 'transparent',
+                borderRadius: '8px', padding: '0.2em 0.7em'
+              }}>
+                <input
+                  type="checkbox"
+                  value={p}
+                  checked={pasatiempos.includes(p)}
+                  onChange={handlePasatiempoChange}
+                />
+                <span style={{ color: '#276749' }}>{p}</span>
+              </label>
+            ))}
+          </div>
         </div>
 
         {error && <p className="error">{error}</p>}

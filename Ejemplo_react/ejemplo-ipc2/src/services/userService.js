@@ -52,6 +52,26 @@ export const obtenerUsuarioPorId = async (id) => {
   }
 }
 
+// Función para cargar usuarios desde un archivo XML (POST multipart/form-data)
+export const cargarUsuariosDesdeXml = async (file) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  try {
+    const response = await fetch(`${API_URL}/leer-xml`, {
+      method: 'POST',
+      body: formData,
+    });
+    if (!response.ok) {
+      throw new Error('Error al cargar usuarios desde XML');
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error en cargarUsuariosDesdeXml:', error);
+    throw error;
+  }
+}
+
 /* 
   EJEMPLO: Cómo hacer petición GET directamente desde un componente JSX
   

@@ -71,7 +71,51 @@ export default function UserDetail() {
         <h3>{user.nombre}</h3>
         <p><strong>Correo:</strong> {user.correo}</p>
         <p><strong>ID:</strong> {user.id}</p>
-        
+        {/* Mostrar roles */}
+        {user.roles && user.roles.length > 0 && (
+          <div style={{ marginBottom: '0.5rem' }}>
+            <strong>Roles:</strong>{' '}
+            {user.roles.map((rol, idx) => (
+              <span
+                key={idx}
+                style={{
+                  display: 'inline-block',
+                  background: '#667eea22',
+                  color: '#667eea',
+                  borderRadius: '8px',
+                  padding: '0.2em 0.7em',
+                  marginRight: '0.4em',
+                  fontSize: '0.95em',
+                  fontWeight: 500,
+                }}
+              >
+                {rol}
+              </span>
+            ))}
+          </div>
+        )}
+        {/* Mostrar pasatiempos */}
+        {user.pasatiempos && user.pasatiempos.length > 0 && (
+          <div style={{ marginBottom: '0.5rem' }}>
+            <strong>Pasatiempos:</strong>{' '}
+            {user.pasatiempos.map((p, idx) => (
+              <span
+                key={idx}
+                style={{
+                  display: 'inline-block',
+                  background: '#38a16922',
+                  color: '#276749',
+                  borderRadius: '8px',
+                  padding: '0.2em 0.7em',
+                  marginRight: '0.4em',
+                  fontSize: '0.95em',
+                }}
+              >
+                {p}
+              </span>
+            ))}
+          </div>
+        )}
         <div className="form-actions" style={{ marginTop: '2rem' }}>
           <button onClick={() => navigate('/usuarios')} className="btn secondary">
             Volver
