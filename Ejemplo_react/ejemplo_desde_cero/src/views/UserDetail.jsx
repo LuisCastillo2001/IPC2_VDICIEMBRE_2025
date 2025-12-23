@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { obtenerUsuarioPorId } from '../services/userService'
+import { EliminarUsuarioPorid } from '../services/userService'
 
 // Vista de detalle de un usuario
 // Consume la API para obtener los datos del usuario específico
@@ -31,6 +32,22 @@ export default function UserDetail() {
     } catch (err) {
       setError('No se pudo cargar el usuario')
       console.error('Error al cargar usuario:', err)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const EliminarUsuario = async() => {
+     try {
+      setLoading(true)
+      setError(null)
+      // Hacer petición GET al backend para obtener el usuario por ID
+        await EliminarUsuarioPorid(id)
+        navigate('/usuarios')
+      
+    } catch (err) {
+      setError('No se pudo cargar el usuario')
+      
     } finally {
       setLoading(false)
     }
@@ -119,6 +136,9 @@ export default function UserDetail() {
         <div className="form-actions" style={{ marginTop: '2rem' }}>
           <button onClick={() => navigate('/usuarios')} className="btn secondary">
             Volver
+          </button>
+          <button onClick={EliminarUsuario} className="btn secondary">
+            Eliminar
           </button>
         </div>
       </div>
