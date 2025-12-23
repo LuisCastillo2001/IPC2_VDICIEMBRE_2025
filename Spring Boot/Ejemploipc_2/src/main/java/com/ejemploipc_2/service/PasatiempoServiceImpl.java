@@ -9,6 +9,7 @@ import java.util.LinkedList;
 public class PasatiempoServiceImpl implements PasatiempoService {
 
     private final LinkedList<Pasatiempo> pasatiempos = new LinkedList<>();
+
     private Long contadorId = 1L;
 
     @Override

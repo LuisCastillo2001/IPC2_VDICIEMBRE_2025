@@ -5,9 +5,14 @@ import com.ejemploipc_2.service.UsuarioServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
-
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.LinkedList;
+import java.util.List;
+import org.w3c.dom.*;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+import java.io.File;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -21,7 +26,7 @@ public class UsuarioController {
 
     @GetMapping
     public ResponseEntity<?> listarUsuarios(){
-        return ResponseEntity.ok(usuarioService.obtenerUsuarios());
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.obtenerUsuarios());
     }
 
     @GetMapping("/{id}")
@@ -30,18 +35,18 @@ public class UsuarioController {
         if (u == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        return ResponseEntity.ok(u);
+        return ResponseEntity.status(HttpStatus.OK).body(u);
     }
 
     @PostMapping
     public ResponseEntity<?> crearUsuario(@RequestBody Usuario usuario){
-        return ResponseEntity.status(201).body(usuarioService.crearUsuario(usuario));
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.crearUsuario(usuario));
     }
 
 
     @PostMapping("/batch")
     public ResponseEntity<?> crearUsuarios(@RequestBody LinkedList<Usuario> usuarios){
-        return ResponseEntity.status(201).body(usuarioService.crearUsuarios(usuarios));
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.crearUsuarios(usuarios));
     }
 
     @PutMapping("/{id}")
@@ -51,7 +56,7 @@ public class UsuarioController {
     ) {
         Usuario actualizado = usuarioService.actualizarUsuario(id, usuario);
         if (actualizado == null){
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         return ResponseEntity.ok(actualizado);
     }
@@ -62,7 +67,18 @@ public class UsuarioController {
         if (!eliminado){
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @PostMapping("/leer-xml")
+    public ResponseEntity<?> leerXmlUsuarios( MultipartFile file) {
+
+        try {
+            List<Usuario> usuarios = usuarioService.leerUsuariosDesdeXml(file.getInputStream());
+            return ResponseEntity.ok(usuarios);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error leyendo el archivo XML");
+        }
     }
 }
 
